@@ -13,6 +13,7 @@
       --yellow: #f4a261;
       --dark-blue: #0b1b2e;
       --light-yellow: #ffe8cc;
+      --accent: #ffb703;
     }
 
     * {
@@ -23,23 +24,25 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to bottom, var(--white), var(--light-yellow));
+      background: linear-gradient(135deg, var(--white), var(--light-yellow));
       color: var(--blue);
-      min-height: 200vh;
+      min-height: 300vh;
+      overflow-x: hidden;
     }
 
     header {
       background: linear-gradient(to right, var(--red), var(--yellow));
       color: var(--white);
-      padding: 20px;
+      padding: 40px 20px;
       text-align: center;
       position: relative;
       font-family: 'Fredoka One', cursive;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     header .logo {
       position: absolute;
-      top: 10px;
+      top: 15px;
       left: 20px;
       width: 70px;
       height: 70px;
@@ -52,12 +55,13 @@
 
     header h1 {
       margin: 0;
-      font-size: 3rem;
+      font-size: 3.5rem;
+      text-shadow: 2px 2px var(--blue);
     }
 
     header p {
-      margin: 5px 0 0;
-      font-size: 1.2rem;
+      margin-top: 10px;
+      font-size: 1.3rem;
     }
 
     /* Sidebar Navigation */
@@ -70,22 +74,25 @@
       background-color: var(--blue);
       overflow-x: hidden;
       transition: 0.5s;
-      padding-top: 100px;
       z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .sidebar a {
-      padding: 15px;
+      display: block;
+      padding: 20px;
       text-align: center;
       text-decoration: none;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: var(--white);
-      display: block;
       transition: 0.3s;
+      font-family: 'Fredoka One', cursive;
     }
 
     .sidebar a:hover {
-      background-color: var(--yellow);
+      background-color: var(--accent);
       color: var(--blue);
     }
 
@@ -95,35 +102,39 @@
       right: 20px;
       background-color: var(--red);
       color: white;
-      padding: 10px 15px;
-      font-size: 16px;
+      padding: 12px 18px;
+      font-size: 18px;
       cursor: pointer;
       z-index: 1100;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     .hero {
-      background: linear-gradient(to right, var(--yellow), var(--white));
-      padding: 80px 20px;
+      background: linear-gradient(120deg, var(--yellow), var(--white));
+      padding: 100px 20px;
       text-align: center;
+      animation: fadeIn 2s ease-in;
     }
 
     .hero h2 {
-      font-size: 2.8rem;
+      font-size: 3rem;
       margin-bottom: 20px;
       font-family: 'Fredoka One', cursive;
+      color: var(--red);
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      color: var(--blue);
     }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 30px;
-      padding: 60px 20px;
+      padding: 80px 30px;
     }
 
     .product {
@@ -143,7 +154,7 @@
 
     .product img {
       max-width: 100%;
-      border-radius: 10px;
+      border-radius: 12px;
       transition: transform 0.3s ease;
     }
 
@@ -154,22 +165,29 @@
     .product p {
       margin-top: 10px;
       font-weight: bold;
+      color: var(--red);
     }
 
     footer {
       background-color: var(--dark-blue);
       color: var(--white);
       text-align: center;
-      padding: 20px;
-      margin-top: 60px;
+      padding: 30px 10px;
       font-family: 'Roboto', sans-serif;
+      margin-top: 60px;
+      font-size: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">
-      <img src="https://drive.google.com/uc?export=view&id=1pdAevUY1kUlueL-PpxzZ0HKLJBNSBgJ3/view?usp=drive_link" alt="Snac Berry Logo">
+      <img src="logo.png" alt="Snac Berry Logo">
     </div>
     <h1>Snac Berry</h1>
     <p>Taste the Fun, Bite the Berry - Snac Berry</p>
@@ -178,9 +196,11 @@
   <button class="openbtn" onclick="openNav()">☰ Menu</button>
 
   <div id="mySidebar" class="sidebar">
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="payments.html">Payments</a>
+    <div>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="payments.html">Payments</a>
+    </div>
   </div>
 
   <section class="hero">
@@ -190,7 +210,7 @@
 
   <section class="products">
     <div class="product">
-      <img src="https://ibb.co/TD2ScnVq" alt="Product 1">
+      <img src="product1.jpg" alt="Product 1">
       <p>Snac Berry Puff #1</p>
     </div>
     <div class="product">
@@ -234,11 +254,7 @@
   <script>
     function openNav() {
       const sidebar = document.getElementById("mySidebar");
-      if (sidebar.style.width === "250px") {
-        sidebar.style.width = "0";
-      } else {
-        sidebar.style.width = "250px";
-      }
+      sidebar.style.width = sidebar.style.width === "250px" ? "0" : "250px";
     }
   </script>
 </body>
